@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        List<News> newsList = new List<News>
+        {
+            new News("Başlık 1", "Haber özeti 1"),
+            new News("Başlık 2", "Haber özeti 2"),
+            new News("Başlık 3", "Haber özeti 3")
+        };
+
+        Console.WriteLine("Haber Başlıkları:");
+        for (int i = 0; i < newsList.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {newsList[i].Title}");
+        }
+
+        Console.Write("Hangi haberi görüntülemek istersiniz (numara girin): ");
+        if (int.TryParse(Console.ReadLine(), out int selectedNewsIndex) && selectedNewsIndex > 0 && selectedNewsIndex <= newsList.Count)
+        {
+            Console.WriteLine($"Seçilen Haber Başlığı: {newsList[selectedNewsIndex - 1].Title}");
+            Console.WriteLine($"Haber Özeti: {newsList[selectedNewsIndex - 1].Summary}");
+        }
+        else
+        {
+            Console.WriteLine("Geçersiz giriş. Lütfen doğru bir numara girin.");
+        }
+    }
+}
+
+class News
+{
+    public string Title { get; }
+    public string Summary { get; }
+
+    public News(string title, string summary)
+    {
+        Title = title;
+        Summary = summary;
+    }
+}
